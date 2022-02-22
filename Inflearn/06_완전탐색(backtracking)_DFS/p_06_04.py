@@ -5,21 +5,14 @@ N개의 원소로 구성된 자연수 집합이 주어지면, 이 집합을 두 
 그렇지 않으면 ”NO"를 출력하는 프로그램
 '''
 
-def tree_traveral(i, right_list):
+def tree_traveral(i, sum_sub):
     if i == len_all_list:
-        left_list = list(set(all_list) - set(right_list))
-
-        if sum(left_list) == sum(right_list): # 두 부분 집합의 합 비교 -> 합이 같으면 YES
+        if sum_sub == (sum(all_list) - sum_sub):
             global result
             result = "YES"
     else:
-        num = all_list[i]
-
-        # left list
-        tree_traveral(i + 1, list(dict.fromkeys((right_list))))
-        # right list
-        right_list.append(num)
-        tree_traveral(i + 1, list(dict.fromkeys((right_list))))
+        tree_traveral(i + 1, sum_sub)
+        tree_traveral(i + 1, sum_sub + all_list[i])
 
 
 if __name__ == "__main__":
@@ -27,5 +20,5 @@ if __name__ == "__main__":
     len_all_list = int(input())
     all_list = list(map(int, input().split()))
 
-    tree_traveral(0, list())
+    tree_traveral(0, 0)
     print(result)
