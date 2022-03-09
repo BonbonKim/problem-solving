@@ -3,13 +3,11 @@ import math
 def solution(fees, records):
     base_time, base_fee = fees[0], fees[1]
     ex_time, ex_fee = fees[2], fees[3]
-    answer = list()
-    cars = []
+    answer, cars = [], []
 
     for r in records:
         cars.append(r.split()[1])
-    cars = list(set(cars))
-    cars.sort()
+    cars = sorted(list(set(cars)))
 
     cars_dict = {x:[] for x in cars}
     for i in records:
@@ -24,7 +22,7 @@ def solution(fees, records):
         for j in range(len(cars_dict[i])//2):
             sh, sm = map(int, cars_dict[i][2*j].split(':'))
             eh, em = map(int, cars_dict[i][2*j+1].split(':'))
-            time += (eh-sh)*60 + (em-sm) # 기본 시간 180분
+            time += (eh-sh)*60 + (em-sm)
 
         fee = base_fee
         if time > base_time:

@@ -22,5 +22,4 @@ def solution(s):
             tmp_p.append(p)
         patterns.append(pattern)
 
-    patterns.sort(key=lambda x: len(x))
-    return len(patterns[0])
+    return len(sorted(patterns,key=lambda x: len(x))[0])

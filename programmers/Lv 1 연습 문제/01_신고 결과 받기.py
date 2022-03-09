@@ -1,6 +1,5 @@
 from collections import Counter
 
-
 def solution(id_list, report, k):
     report_dict = dict()  # key(신고당한 사람 str) : value(신고한 사람 list)
 
@@ -20,11 +19,9 @@ def solution(id_list, report, k):
         if len(report_dict[i]) < k:
             report_dict[i] = []
 
-    answer = []
-    mail = sum(list(report_dict.values()), [])  # 2d list -> 1d list
-    count = Counter(mail)
+    answer = [0] * len(id_list)
+    mail = Counter(sum(list(report_dict.values()), []))
 
-    for i in id_list:
-        answer.append(count[i])
-
+    for i in range(len(id_list)):
+        answer[i] = mail[id_list[i]]
     return answer

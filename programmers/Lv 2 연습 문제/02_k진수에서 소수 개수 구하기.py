@@ -12,9 +12,8 @@ def convert_10_to_k(n, k):
     num = list()
     while n > 0:
         n, rest = divmod(n, k)
-        num.append(str(rest))
-    num.reverse()
-    return "".join(num)
+        num.append(rest)
+    return "".join(map(str,num[::-1]))
 
 def solution(n, k):
     num_k = convert_10_to_k(n, k)
@@ -22,7 +21,7 @@ def solution(n, k):
 
     answer = 0
     for n in num_k:
-        if n == "": continue
+        if not n: continue
         if is_prime_num(int(n)):
             answer += 1
 

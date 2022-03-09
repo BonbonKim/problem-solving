@@ -9,20 +9,18 @@ def solution(numbers, hand):
         elif dist[n][1] == 0:
             pick = 'L'
         else:
-            e = dist[n]
             s_r = dist[right]
             s_l = dist[left]
-            distance_r = abs(s_r[0]-e[0]) + abs(s_r[1]-e[1])
-            distance_l = abs(s_l[0]-e[0]) + abs(s_l[1]-e[1])
+            e = dist[n]
+            dist_r = abs(s_r[0]-e[0]) + abs(s_r[1]-e[1])
+            dist_l = abs(s_l[0]-e[0]) + abs(s_l[1]-e[1])
 
-            if distance_l > distance_r:
-                pick = 'R'
-            elif distance_l < distance_r:
-                pick = 'L'
-            else:
+            if dist_l == dist_r:
                 pick = 'R' if hand == 'right' else 'L'
-
+            else:
+                pick = 'R' if dist_l > dist_r else 'L'
         answer += 'R' if pick == 'R' else 'L'
         right = n if pick == 'R' else right
         left = n if pick == 'L' else left
+
     return answer
