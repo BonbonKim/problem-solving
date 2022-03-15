@@ -4,22 +4,17 @@
 -> 다시 풀기
 '''
 
-digit, cut_num = map(str, input().split())
-cut_num = int(cut_num)
+num, cnt = input().split()
+cnt = int(cnt)
+answer = []
 
-digit = list(map(int, list(digit)))
+for n in num:
+    while answer and answer[-1]<n and cnt>0:
+        answer.pop()
+        cnt -= 1
+    answer.append(n)
 
-new_digit = []
-for d in digit:
-    while new_digit and new_digit[-1] < d and cut_num > 0:
-        new_digit.pop()
-        cut_num -= 1
-    new_digit.append(d)
-
-if cut_num != 0: # 한번 돌 때, m개 만큼 다 지우지 못한 경우, 맨 뒤에서 자르기
-    new_digit[:-cut_num]
-
-new_digit = "".join(map(str, new_digit))
-print(new_digit)
+answer = answer[:-cnt] if cnt>0 else answer
+print("".join(map(str, answer)))
 
 
