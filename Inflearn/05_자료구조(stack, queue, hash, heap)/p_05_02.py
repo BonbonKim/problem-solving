@@ -4,18 +4,16 @@
 잘려진 쇠막대기 조각의 총 개수를 구하는 프로그램
 '''
 
-pars = input()
-pars = list(pars.replace("()", "L"))  # L : laser
+stick = input().replace('()','L') # 레이저
+s, answer = 0, 0
 
-stack = []
-cnt = 0
-for p in pars:
-    if p == '(':
-        stack.append('stick')
-    elif p == ')':
-        stack.pop()
-        cnt += 1
-    else: # L : laser
-        cnt += len(stack)
+for i in stick:
+    if i == 'L':
+        answer += s
+    elif i == '(':
+        s += 1
+    else:
+        s -= 1
+        answer += 1
 
-print(cnt)
+print(answer)
