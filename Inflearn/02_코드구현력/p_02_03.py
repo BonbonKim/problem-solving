@@ -4,25 +4,13 @@
 기록한 값 중 K번째로 큰 수를 출력하는 프로그램
 '''
 
-num_list = list(map(int, input().split()))
-N, K = num_list[0], num_list[1]
-cards = list(map(int, input().split()))
+from itertools import permutations
 
-cards.sort(reverse=True)
-tmp = [0, 0, 0]
-results = list()
+n, k = map(int, input().split())
+nums = list(map(int, input().split()))
 
-for i in range(N):
-    tmp[0] = cards[i]
-    for j in range(N):
-        if j > i:
-            tmp[1] = cards[j]
-            for z in range(N):
-                if z > j:
-                    tmp[2] = cards[z]
-                    results.append(tmp[0]+tmp[1]+tmp[2])
+nums.sort(reverse=True)
+nums = list(permutations(nums, 3))
+nums = [sum(i) for i in nums]
 
-results.sort(reverse=True)
-results = list(dict.fromkeys(results))
-
-print(results[K-1])
+print(sorted(set(nums),reverse=True)[k-1])
