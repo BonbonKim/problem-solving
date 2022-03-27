@@ -7,14 +7,14 @@ N명의 학생 중 평균에 가장 가까운 학생은 몇 번째 학생인지 
 높은 점수를 가진 학생이 여러 명일 경우 그 중 학생 번호가 빠른 학생의 번호를 답으로 합니다.
 '''
 
-number_of_student = int(input())
+n = int(input())
 scores = list(map(int, input().split()))
-mean = int(round(sum(scores) / number_of_student, 0))
+mean = int(round(sum(scores) / n, 0))
 
 min_sub, max_score = 100, -1
 student_number = -1
 
-for i in range(number_of_student):
+for i in range(n):
     cur_sub = abs(mean - scores[i])
     cur_score = scores[i]
     if cur_sub < min_sub or (cur_sub == min_sub and max_score < cur_score):
