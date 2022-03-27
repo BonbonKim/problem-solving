@@ -8,18 +8,17 @@ N명의 학생 중 평균에 가장 가까운 학생은 몇 번째 학생인지 
 '''
 
 n = int(input())
-scores = list(map(int, input().split()))
-mean = int(round(sum(scores) / n, 0))
+nums = list(map(int, input().split()))
+avg = int(round(sum(nums) / n, 0))
 
-min_sub, max_score = 100, -1
-student_number = -1
+min_d, max_d = 100, -100
+answer = -1
 
-for i in range(n):
-    cur_sub = abs(mean - scores[i])
-    cur_score = scores[i]
-    if cur_sub < min_sub or (cur_sub == min_sub and max_score < cur_score):
-        min_sub = cur_sub
-        max_score = cur_score
-        student_number = i + 1
+for i in range(len(nums)):
+    d = nums[i] - avg
+    if abs(d) < min_d or (abs(d) == min_d and max_d < d):
+        answer = i+1
+        min_d = abs(d)
+        max_d = d
 
-print(mean, student_number)
+print(avg, answer)
