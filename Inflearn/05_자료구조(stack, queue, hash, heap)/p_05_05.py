@@ -10,13 +10,12 @@ N과 K가 주어질 때, 공주를 구하러 갈 왕자의 번호를 출력하�
 
 from collections import deque
 
-num, kill_cnt = map(int, input().split())
-people = deque(list(range(1, num+1)))
+n, k = map(int, input().split())
+q = deque(list(range(1, n+1)))
 
-while len(people) > 1:
-    for i in range(kill_cnt-1):
-        tmp = people.popleft()
-        people.append(tmp)
-    people.popleft()
-
-print(people.popleft())
+while len(q) > 1:
+    for i in range(k-1):
+        tmp = q.popleft()
+        q.append(tmp)
+    q.popleft()
+print(q[0])
