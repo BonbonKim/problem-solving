@@ -4,8 +4,8 @@ dx = [-1, -1, 0, 1, 1, 1, 0, -1]
 dy = [0, 1, 1, 1, 0, -1, -1, -1]
 
 n, m, k = map(int, input().split())
+board = [[list() for _ in range(n)] for _ in range(n)]
 fire_balls = [list(map(int, input().split())) for _ in range(m)] # r행, c열, m (질량), s(속력), d(방향)
-board = [[list()]*n]*n
 
 for _ in range(k):
     while fire_balls:
@@ -21,7 +21,7 @@ for _ in range(k):
                 continue
 
             if cnt_fire == 1:
-                fire_balls.append(x, y, board[x][y].pop())
+                fire_balls.append([x, y]+ board[x][y].pop())
 
             elif cnt_fire > 1:
                 sum_m, sum_s, state, = 0, 0, 0  # 홀짝
@@ -39,6 +39,3 @@ for _ in range(k):
                     fire_balls.append([x, y, sum_m//5, sum_s//cnt_fire, dd])
 
 print(sum([f[2] for f in fire_balls]))
-
-
-
