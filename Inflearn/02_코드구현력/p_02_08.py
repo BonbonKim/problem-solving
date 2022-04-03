@@ -3,30 +3,21 @@
 N개의 자연수가 입력되면 각 자연수를 뒤집은 후 그 뒤집은 수가 소수이면 그 수를 출력하는 프로그램
 '''
 
-def reverse_num(x):
-    x = list(str(x))
-    x = x[::-1]
-    return int("".join(x))
+import math
 
-def is_prime(x):
-    is_prime_num = True
-    if x > 1:
-        for i in range(2, x):
-            if x % i == 0:
-                is_prime_num = False
-                break
-    else:
-        is_prime_num = False
-    return is_prime_num
+def is_prime(n):
+    if n == 1:
+        return False
+    for i in range(2,int(math.sqrt(n)+1)):
+        if n%i == 0:
+            return False
+    return True
 
-
-num_of_digit = int(input())
-num_list = list(map(int, input().split()))
-results = list()
-
-for i in num_list:
-    cur_num = reverse_num(i)
-    if is_prime(cur_num):
-        results.append(cur_num)
-
-print(" ".join(map(str, results)))
+_ = input()
+nums = list(map(str, input().split()))
+answer = []
+for n in nums:
+    n = int(n[::-1])
+    if is_prime(n):
+        answer.append(str(n))
+print(' '.join(answer))
