@@ -8,28 +8,18 @@
 N 명이 주사위 게임에 참여하였을 때, 가장 많은 상금을 받은 사람의 상금을 출력하는 프로그램
 '''
 
-num_of_people = int(input())
-award_list = list()
+from collections import Counter
 
-for n in range(num_of_people):
-    dice_list = list(map(int, input().split()))
-    count_dice = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+n = int(input())
+nums = [list(map(int, input().split())) for _ in range(n)]
+awards = []
 
-    for i in dice_list:
-        count_dice[i] = count_dice[i] + 1
-
-    award = 0
-    for i in count_dice.keys():
-        if count_dice[i] == 3:
-            award = 10000 + (1000 * i)
-            break
-        elif count_dice[i] == 2:
-            award = 1000 + (100 * i)
-            break
-        elif count_dice[i] == 1:
-            award = 100 * i
-    award_list.append(award)
-
-
-award_list.sort()
-print(award_list[-1])
+for num in nums:
+    c = Counter(num).most_common()
+    if c[0][1] == 3:
+        awards.append(10000 + c[0][0]*1000)
+    elif c[0][1] == 2:
+        awards.append(1000 + c[0][0]*100)
+    else:
+        awards.append(sorted(c,reverse=True)[0][0]*100)
+print(max(awards))
